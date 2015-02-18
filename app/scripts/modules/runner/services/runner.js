@@ -35,7 +35,7 @@
             clearCompletedSessions: clearCompletedSessions
 
         };
-        return runner;
+
 
         function initialize() {
             subscriptionService.register(EVENTS.SOCKET.RUN.UPDATED, this.handle);
@@ -232,6 +232,6 @@
         var handleNewReport = function (runData) {
             reportService.addNewReport(runData);
         };
-
+        return runner;
     }
 })();
