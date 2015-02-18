@@ -1,0 +1,98 @@
+<div class="top-filter ic filter-2 active">
+    <i class="fa fa-times" ng-click=""></i>
+
+    <div class="filters">
+        <span translate="WRITER.STORY.FILTER.NEW_STORY"></span>
+        <input ng-model="story.name">
+    </div>
+    <div class="actions">
+        <button ng-click="">
+            <i class="fa fa-check"></i>
+            <span translate="WRITER.STORY.FILTER.SAVE"></span>
+        </button>
+        <i class="fa fa-search-plus"></i>
+    </div>
+</div>
+<ul id="story-list" class="main-content-list filter-2">
+    <li id="prologue-list" class="ic cl list-animate">
+        <div class="selectable" ng-class="{'active':story.selectedItem === 'prologue'}"
+             ng-click="story.selectedItem = 'prologue'">
+            <div class="title">
+                <span class="separate" translate="WRITER.STORY.PROLOGUE"></span>
+            </div>
+            <div class="comments">
+                <span>0 scenarios</span>
+            </div>
+        </div>
+        <ul>
+            <li class="cl">
+                <div class="selectable">
+                    <div class="title">
+                        <span translate="WRITER.STORY.REFERRING"></span>
+                        <span class="separate">blaat</span>
+                    </div>
+                    <div class="comments active">
+                        <span translate="WRITER.STORY.FROM"></span>
+                        <span>Financial Transactions > Orders</span>
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div>
+            <div class="title">
+                <input ng-model="newStep">
+                <span>Tagged with</span>
+
+                <div class="select"></div>
+            </div>
+            <div class="comments">
+                <button>
+                    <i class="fa fa-chain-broken"></i>
+                    <span>Add pending</span>
+                </button>
+            </div>
+        </div>
+    </li>
+    <li id="scenarios-list" class="ic cl list-animate">
+        <div class="selectable" ng-class="{'active':story.selectedItem === 'scenario'}"
+             ng-click="story.selectedItem = 'scenario'">
+            <div class="title">
+                <span class="separate" translate="WRITER.STORY.SCENARIOS"></span>
+            </div>
+        </div>
+        <ul>
+            <li class="ic cl">
+                <div class="selectable">
+                    <div class="title">
+                        <span class="separate" ng-bind="story.scenario1" ng-hide="!story.scenario1show" ng-click="story.scenario1show=false;$()"></span>
+                        <input ng-model="story.scenario1" ng-hide="story.scenario1show" >
+                    </div>
+                    <div class="comments active">
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                </div>
+                <ul>
+                    <li class="ic cl">
+
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div>
+            <div class="title">
+                <input ng-model="newStep">
+                <span>Tagged with</span>
+
+                <div class="select"></div>
+            </div>
+            <div class="comments">
+                <button>
+                    <i class="fa fa-chain-broken"></i>
+                    <span>Add pending</span>
+                </button>
+            </div>
+        </div>
+    </li>
+
+</ul>

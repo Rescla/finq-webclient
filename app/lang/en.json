@@ -147,7 +147,26 @@
     "WRITER" : {
         "TITLE" : "Write",
         "STORIES" : {
-            "TITLE" : "Stories"
+            "TITLE" : "Stories",
+            "FILTER" : {
+                "BEFORE_STEP_TYPE": "Manage",
+                "NEW_STORY": "New story",
+                "NEW_SCENARIO": "New scenario",
+                "EDIT": "Edit"
+            }
+        },
+        "STORY" : {
+            "TITLE" : "Story",
+            "FILTER" : {
+                "NEW_STORY": "Create a new story named",
+                "NEW_STORY_PLACEHOLDER": "My story",
+                "SAVE": "Save"
+            },
+            "PROLOGUE": "Prologue",
+            "SCENARIOS": "Scenarios",
+            "EPILOGUE": "Epilogue",
+            "REFERRING": "Referring:",
+            "FROM": "from"
         },
         "STEPS" : {
             "TITLE" : "Test steps"
@@ -166,6 +185,11 @@
         },
         "STATUSES" : {
             "ANY" : "all results"
+        },
+        "STEP_TYPES" : {
+            "ANY" : "all stories",
+            "PENDING" : "stories with pending steps",
+            "NO_PENDING": "stories without pending steps"
         }
     },
     "STATE" : {

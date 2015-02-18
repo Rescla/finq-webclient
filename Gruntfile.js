@@ -260,7 +260,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.tmp/concat/scripts',
-          src: '*.js',
+          src: '**/*.js',
           dest: '.tmp/concat/scripts'
         }]
       }

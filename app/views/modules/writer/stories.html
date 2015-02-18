@@ -1,0 +1,63 @@
+<div class="top-filter ic ng-hide filter-2 selectable" ng-show="filter.loaded" ng-class="{'active':stories.selectedItem === null}" ng-click="stories.selectedItem = null" ng-controller="StoriesFilterCtrl as filter">
+    <i class="fa fa-bars" ng-click="stories.expander.toggleAll()"></i>
+    <div class="filters">
+        <i class="fa fa-folder-open-o" ng-class="" ng-click="filter.expandStepType = !filter.expandStepType"></i>
+        <span translate="WRITER.STORIES.FILTER.BEFORE_STEP_TYPE" ng-hide="!filter.expandStepType"></span>
+        <div class="select" filter-select="filter.types" placeholder="filter.stepTypesPlaceholder" filter-id="stories.filter.set.id"  ng-hide="!filter.expandStepType" max-items="{{::stories.maxSelectItems}}"></div>
+    </div>
+</div>
+<ul id="story-list" class="main-content-list filter-2">
+    <li class="ic cl list-animate" ng-repeat="book in filteredBooks = (storybooks() | storybookPaginationFilter:stories.currentPage:stories.maxScenarios) track by book.id">
+        <div class="selectable" ng-class="{'active':stories.selectedItem === 'book'+book.id}" ng-click="stories.selectedItem = 'book'+book.id">
+            <div class="title">
+                <i class="fa fa-bars" data-toggle="collection"></i>
+                <span class="separate">{{::book.title}}</span>
+            </div>
+            <div class="actions">
+                <button ng-click="">
+                    <i class="fa fa-plus"></i>
+                    <span translate="WRITER.STORIES.FILTER.NEW_STORY"></span>
+                </button>
+                <button ng-click="">
+                    <i class="fa fa-edit"></i>
+                    <span translate="WRITER.STORIES.FILTER.EDIT"></span>
+                </button>
+            </div>
+        </div>
+        <ul>
+            <li class="ic cl" ng-repeat="story in book.stories track by story.id">
+                <div class="selectable" ng-class="{'active':stories.selectedItem === 'story'+story.id}" ng-click="stories.selectedItem = 'story'+story.id" data-toggle="story">
+                    <div class="title">
+                        <i class="fa expand"></i>
+                        <span class="separate">{{::story.title}}</span>
+                    </div>
+                    <div class="actions">
+                        <button ng-click="">
+                            <i class="fa fa-plus"></i>
+                            <span translate="WRITER.STORIES.FILTER.NEW_SCENARIO"></span>
+                        </button>
+                        <button ng-click="">
+                            <i class="fa fa-edit"></i>
+                            <span translate="WRITER.STORIES.FILTER.EDIT"></span>
+                        </button>
+                    </div>
+                </div>
+                <ul>
+                    <li class="ic cl" ng-repeat="scenario in story.scenarios track by scenario.id">
+                        <div class="selectable" ng-class="{'active':stories.selectedItem === 'scenario'+scenario.id}" ng-click="stories.selectedItem = 'scenario'+scenario.id">
+                            <div class="title">
+                                <span class="separate">{{::scenario.title}}</span>
+                            </div>
+
+                            <div class="comments">
+                                <strong class="hint--left separate" ng-hide="">
+                                    <i class="fa fa-chain-broken"></i>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -966,6 +966,8 @@ i.writer:before {
           background: #c22b1c; }
         .main-content-list > li.cl > div > div.title > .radial-progress .inset[data-highlight="success"] {
           background: #beca68; }
+      .main-content-list > li.cl > div > div.title > input {
+        color: blue; }
       .main-content-list > li.cl > div > div.title > span,
       .main-content-list > li.cl > div > div.comments > i,
       .main-content-list > li.cl > div > div.comments > strong,
