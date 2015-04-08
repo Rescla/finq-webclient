@@ -3,6 +3,34 @@
  */
 'use strict';
 
+describe('Unit: Variable modal directive', function () {
+    beforeEach(module('finqApp'));
+    var element, scope;
+    var variableModal;
+    beforeEach(module('views/modules/writer/directives/variable-modal.html'));
+
+    beforeEach(inject(function ($compile, $rootScope, _variableModal_) {
+        variableModal = _variableModal_;
+        scope = $rootScope.$new();
+        var template = "<div variable-modal></div>";
+        template = $compile(template)(scope);
+
+        scope.$digest();
+        element = $(template);
+    }));
+
+    it('should hide or show the element depending on visibility', function () {
+        expect(element.hasClass('ng-hide')).to.be.true();
+        variableModal.setVisible(true);
+        scope.$digest();
+        expect(element.hasClass('ng-hide')).to.be.false();
+    });
+
+    it('should add the modal-wrapper class', function () {
+        expect(element.hasClass('modal-wrapper')).to.be.true();
+    });
+});
+
 describe('Unit: Variable modal controller', function () {
     beforeEach(module('finqApp'));
     var controller, scope, variableModalMock;
@@ -133,30 +161,4 @@ describe('Unit: Variable modal controller', function () {
     });
 });
 
-describe('Unit: Variable modal directive', function () {
-    beforeEach(module('finqApp'));
-    var element, scope;
-    var variableModal;
-    beforeEach(module('views/modules/writer/directives/variable-modal.html'));
 
-    beforeEach(inject(function ($compile, $rootScope, _variableModal_) {
-        variableModal = _variableModal_;
-        scope = $rootScope.$new();
-        var template = "<div variable-modal></div>";
-        template = $compile(template)(scope);
-
-        scope.$digest();
-        element = $(template);
-    }));
-
-    it('should hide or show the element depending on visibility', function () {
-        expect(element.hasClass('ng-hide')).to.be.true();
-        variableModal.setVisible(true);
-        scope.$digest();
-        expect(element.hasClass('ng-hide')).to.be.false();
-    });
-
-    it('should add the modal-wrapper class', function () {
-        expect(element.hasClass('modal-wrapper')).to.be.true();
-    });
-});

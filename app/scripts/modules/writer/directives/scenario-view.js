@@ -8,8 +8,8 @@ angular.module('finqApp.writer.directive')
             scope: {
                 scenarios: '='
             },
-            replace: true,
-            restrict: 'E',
+            //replace: true,
+            restrict: 'A',
             templateUrl: 'views/modules/writer/directives/scenario-view.html',
             controller: 'ScenarioViewCtrl'
         };

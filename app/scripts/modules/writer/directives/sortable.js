@@ -1,16 +1,28 @@
 /*global $: false */
 'use strict';
 /**
- * Created by marc.fokkert on 10-3-2015.
+ * @ngdoc function
+ * @name finqApp.writer.directive:sortable
+ * @description
+ * # Sortable directive
+ *
+ * Creates sortable element using JqueryUI's sortable
+ *
+ * Supports the following scope variables on the element scope
+ * *sortable*: Collection to be modified
+ * *connectWith*: ConnectWith selector
+ * *handle*: Handle selector
+ * *animationClass*: Class that will be removed on child elements during element removal/adding
  */
 angular.module('finqApp.writer.directive')
     .directive('sortable', function () {
         return {
-            //scope: {
-            //    'sortable': '=', // collection to be modified
-            //    'connectWith': '=', // connect with selector
-            //    'handle': '=' // handle class selector
-            //},
+            scope: {
+                sortable: '=',
+                connectWith: '@',
+                handle: '@',
+                animationClass: '@'
+            },
             restrict: 'A',
             controller: 'SortableCtrl',
             link: function (scope, element, attrs) {
@@ -25,7 +37,7 @@ angular.module('finqApp.writer.directive')
                     }
                 };
 
-                scope.sortable = scope[attrs.sortable];
+                scope.animationClass = attrs.animationClass;
 
                 if (attrs.handle !== undefined) {
                     sortableObject.handle = attrs.handle;
@@ -33,12 +45,12 @@ angular.module('finqApp.writer.directive')
 
                 jqElement.sortable(sortableObject);
 
-                scope.$parent.$parent.$on('finqApp.scope.sortableElementAdded', function () {
+                scope.$root.$on('finqApp.scope.sortableElementAdded', function () {
                     if (attrs.connectWith !== undefined) {
                         jqElement.sortable('option', 'connectWith', $(attrs.connectWith));
                     }
                 });
-                scope.$parent.$parent.$broadcast('finqApp.scope.sortableElementAdded');
+                scope.$root.$broadcast('finqApp.scope.sortableElementAdded');
             }
         };
     })
@@ -52,11 +64,11 @@ angular.module('finqApp.writer.directive')
         }
 
         function sortableObjectEnd(event, ui, element){
-            var animatedElements = $(element).find('.list-animate');
+            var animatedElements = $(element).find('.' + $scope.animationClass);
             var movedOnParent = ui.item.parent().is(element) && ui.sender === null;
             var ngElementScope = angular.element(ui.item).scope();
 
-            animatedElements.removeClass('list-animate');
+            animatedElements.removeClass($scope.animationClass);
 
             if (movedOnParent) {
                 // Move on the same item so move in sortable
@@ -75,6 +87,6 @@ angular.module('finqApp.writer.directive')
                 $rootScope.$digest();
             }
 
-            animatedElements.addClass('list-animate');
+            animatedElements.addClass($scope.animationClass);
         }
     });
